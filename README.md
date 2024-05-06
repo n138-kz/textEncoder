@@ -22,6 +22,8 @@ git commit -m init
 git branch -M main
 git remote add origin git@github.com:n138-kz/textEncoder.git
 git branch --set-upstream-to=origin/main main
+git config pull.rebase false
+git pull 
 git push -u origin main
 ```
 
