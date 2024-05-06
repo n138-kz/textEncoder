@@ -5,11 +5,11 @@
 ### if you’ve done this kind of thing before
 
 ```sh
-git clone https://github.com/n138-kz/${REPOSITORY_NAME}.git
+git clone https://github.com/n138-kz/textEncoder.git
 ```
 
 ```sh
-git clone git@github.com:n138-kz/${REPOSITORY_NAME}.git
+git clone git@github.com:n138-kz/textEncoder.git
 ```
 
 ### …or create a new repository on the command line
@@ -20,14 +20,14 @@ git init
 git add README.md
 git commit -m init
 git branch -M main
-git remote add origin git@github.com:n138-kz/${REPOSITORY_NAME}.git
+git remote add origin git@github.com:n138-kz/textEncoder.git
 git push -u origin main
 ```
 
 ### …or push an existing repository from the command line
 
 ```sh
-git remote add origin git@github.com:n138-kz/${REPOSITORY_NAME}.git
+git remote add origin git@github.com:n138-kz/textEncoder.git
 git branch -M main
 git push -u origin main
 ```
