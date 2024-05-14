@@ -49,6 +49,15 @@ function push2discord($endpoint, $content_author='Webhooks', $content_author_ava
 $system = [
 	'hash_aglos' => 'sha1',
 ];
+$config = dirname(__FILE__) . '/' . 'config.json';
+if ( file_exists($config) && filesize($config) > 0 ) {
+	try {
+		$config = json_decode(file_get_contents($config), true);
+	} catch (\Exception $e) {
+		unset($config);
+	}
+}
+
 $result = [];
 $result += [ 'issueat' => time() ];
 $result += [ 'client' => [
