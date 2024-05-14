@@ -78,16 +78,58 @@ $result += [ 'request' => [
 header('Content-Type: application/json');
 if ( ! in_array( $result['request']['method'], ['get'] ) ) { 
 	$result += [ 'erroron' => __LINE__ ];
+
+	if ($config['external']['discord']['activate']['notice']) {
+		push2discord(
+			$config['external']['discord']['uri']['notice'],
+			$config['external']['discord']['authorname']['notice'],
+			$config['external']['discord']['authoravatar']['notice'],
+			$config['external']['discord']['color']['notice'],
+			'time: ' . chr(9) . time() . PHP_EOL.
+			'```json' . PHP_EOL.
+			json_encode([ $result, ], JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES ) . PHP_EOL.
+			'```' . PHP_EOL
+		);
+	}
+	
 	echo json_encode($result);
 	exit();
 }
 if ( ! isset($_REQUEST) ) {
 	$result += [ 'erroron' => __LINE__ ];
+
+	if ($config['external']['discord']['activate']['notice']) {
+		push2discord(
+			$config['external']['discord']['uri']['notice'],
+			$config['external']['discord']['authorname']['notice'],
+			$config['external']['discord']['authoravatar']['notice'],
+			$config['external']['discord']['color']['notice'],
+			'time: ' . chr(9) . time() . PHP_EOL.
+			'```json' . PHP_EOL.
+			json_encode([ $result, ], JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES ) . PHP_EOL.
+			'```' . PHP_EOL
+		);
+	}
+	
 	echo json_encode($result);
 	exit();
 }
 if ( ! isset($_REQUEST['q']) ) {
 	$result += [ 'erroron' => __LINE__ ];
+
+	if ($config['external']['discord']['activate']['notice']) {
+		push2discord(
+			$config['external']['discord']['uri']['notice'],
+			$config['external']['discord']['authorname']['notice'],
+			$config['external']['discord']['authoravatar']['notice'],
+			$config['external']['discord']['color']['notice'],
+			'time: ' . chr(9) . time() . PHP_EOL.
+			'```json' . PHP_EOL.
+			json_encode([ $result, ], JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES ) . PHP_EOL.
+			'```' . PHP_EOL
+		);
+	}
+	
 	echo json_encode($result);
 	exit();
 }
@@ -112,5 +154,17 @@ if ( strpos($_REQUEST['q'], 'https://vwitter.com/') !== FALSE ) {
 
 //$result['result'] = array_merge($result['result'], [ 'curl_result' => file_get_contents($result['result']['text']) ]);
 
-echo json_encode($result);
+if ($config['external']['discord']['activate']['notice']) {
+	push2discord(
+		$config['external']['discord']['uri']['notice'],
+		$config['external']['discord']['authorname']['notice'],
+		$config['external']['discord']['authoravatar']['notice'],
+		$config['external']['discord']['color']['notice'],
+		'time: ' . chr(9) . time() . PHP_EOL.
+		'```json' . PHP_EOL.
+		json_encode([ $result, ], JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES ) . PHP_EOL.
+		'```' . PHP_EOL
+	);
+}
 
+echo json_encode($result);
