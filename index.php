@@ -3,6 +3,9 @@ date_default_timezone_set('UTC');
 session_name('token'.date('Ymd-H'));
 session_start();
 
+function is_empty($arg) {
+	return ( !isset($arg) || empty($arg) );
+}
 $system = [
 	'hash_aglos' => 'sha1',
 ];
