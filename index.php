@@ -77,7 +77,7 @@ $result += [ 'request' => [
 
 header('Content-Type: application/json');
 if ( ! in_array( $result['request']['method'], ['get'] ) ) { 
-	$result += [ 'erroron' => __LINE__ ];
+	$result += [ 'error' => [ 'on' => __LINE__, 'mesg' => null ] ];
 
 	if ($config['external']['discord']['activate']['notice']) {
 		push2discord(
@@ -96,7 +96,7 @@ if ( ! in_array( $result['request']['method'], ['get'] ) ) {
 	exit();
 }
 if ( ! isset($_REQUEST) ) {
-	$result += [ 'erroron' => __LINE__ ];
+	$result += [ 'error' => [ 'on' => __LINE__, 'mesg' => null ] ];
 
 	if ($config['external']['discord']['activate']['notice']) {
 		push2discord(
@@ -115,7 +115,7 @@ if ( ! isset($_REQUEST) ) {
 	exit();
 }
 if ( ! isset($_REQUEST['q']) ) {
-	$result += [ 'erroron' => __LINE__ ];
+	$result += [ 'error' => [ 'on' => __LINE__, 'mesg' => null ] ];
 
 	if ($config['external']['discord']['activate']['notice']) {
 		push2discord(
