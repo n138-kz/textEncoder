@@ -13,3 +13,4 @@ build/
 *.exe
 *.msi
 *.jar
+config.json
