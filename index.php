@@ -67,6 +67,7 @@ $result += [ 'client' => [
 	'hostbyaddr' => gethostbyaddr($_SERVER['REMOTE_ADDR']),
 	'inet_pton' => inet_pton($_SERVER['REMOTE_ADDR']),
 	'ip2long' => ip2long($_SERVER['REMOTE_ADDR']),
+	'lang' => mb_language(),
 ] ];
 $result += [ 'request' => [
 	'uri' => $_SERVER['REQUEST_URI'],
