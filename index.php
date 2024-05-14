@@ -63,7 +63,7 @@ $result += [ 'issueat' => time() ];
 $result += [ 'client' => [
 	'ipaddress' => $_SERVER['REMOTE_ADDR'],
 	'portnum' => $_SERVER['REMOTE_PORT'],
-	'ua' => $_SERVER['HTTP_USER_AGENT'],
+	'useragent' => $_SERVER['HTTP_USER_AGENT'],
 	'hostbyaddr' => gethostbyaddr($_SERVER['REMOTE_ADDR']),
 	'inet_pton' => inet_pton($_SERVER['REMOTE_ADDR']),
 	'ip2long' => ip2long($_SERVER['REMOTE_ADDR']),
