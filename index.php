@@ -165,6 +165,26 @@ if ($config['external']['discord']['activate']['notice']) {
 		json_encode([ $result, ], JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES ) . PHP_EOL.
 		'```' . PHP_EOL
 	);
+
+	$endpoint = $config['external']['discord']['uri']['notice'];
+	$result_json = '/tmp/' . time() . '.json';
+	file_put_contents($result_json, json_encode($result, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
+	$payload_postdata = [
+		'content' => 'json files - ' . $result_json,
+		'tts' => 'false',
+		'file' => curl_file_create($result_json, 'application/json', $result_json),
+	];
+	$curl_req = curl_init($endpoint);
+	curl_setopt($curl_req,CURLOPT_POST, TRUE);
+	curl_setopt($curl_req,CURLOPT_HTTPHEADER, ['Content-Type: multipart/form-data']);
+	curl_setopt($curl_req,CURLOPT_POSTFIELDS, $payload_postdata);
+	curl_setopt($curl_req,CURLOPT_SSL_VERIFYPEER, TRUE);
+	curl_setopt($curl_req,CURLOPT_SSL_VERIFYHOST, 2);
+	curl_setopt($curl_req,CURLOPT_RETURNTRANSFER, TRUE);
+	curl_setopt($curl_req,CURLOPT_FOLLOWLOCATION, TRUE);
+	$curl_res=curl_exec($curl_req);
+	$curl_res=json_decode($curl_res, TRUE);
+
 }
 
 echo json_encode($result);
