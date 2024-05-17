@@ -75,6 +75,9 @@ $result += [ 'request' => [
 	'method' => mb_strtolower($_SERVER['REQUEST_METHOD']),
 	'uuid' => hash($system['hash_aglos'], $result['issueat']) . '_' . $_SERVER['UNIQUE_ID'],
 ] ];
+$result += [ 'reference' => [
+	'url' => 'https://github.com/n138-kz/textEncoder/',
+] ];
 
 header('Content-Type: application/json');
 if ( ! in_array( $result['request']['method'], ['get'] ) ) { 
