@@ -1,4 +1,4 @@
-# textEncoder
+# [textEncoder](https://github.com/n138-kz/textEncoder)
 
 ## Quick setup 
 
