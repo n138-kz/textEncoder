@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		code {
+			padding: 0 10px;
+			background-color: lightgray;
+		}
+		table#encodedCharsTable td {
+			text-align: right;
+		}
+	</style>
+</head>
+<body>
+	<form action="#" method="post">
+		<fieldset>
+			<legend>input</legend>
+			<input type="text" id="inputText" onchange="encode()" onkeypress="encode()" onkeyup="encode()" onclick="encode()">
+		</fieldset>
+		<input type="button" value="encode" onclick="encode()">
+	</form>
+	<script>
+		const encode = () => {
+			let text=document.querySelector('#inputText').value;
+			
+			let array=[];
+			let wrap = document.createElement('table');
+			wrap.border=1;
+			wrap.id='encodedCharsTable';
+			try{ document.querySelector(`#${wrap.id}`).remove(); } catch(e) {}
+			let section = document.createElement('thead');
+			let line = document.createElement('tr');
+			let td = document.createElement('th');
+			line.appendChild(td);
+			td.innerText = 'char';
+			line.appendChild(td);
+			td = document.createElement('th');
+			line.appendChild(td);
+			td.innerText = '16x';
+			line.appendChild(td);
+			td = document.createElement('th');
+			line.appendChild(td);
+			td.innerText = '10x';
+			line.appendChild(td);
+			section.appendChild(line);
+			wrap.appendChild(section);
+			let code_linear = document.createElement('code');
+			section = document.createElement('tbody');
+			for (let i=0; i<text.length; i++) {
+				char = text.charAt(i);
+				array.push(char.codePointAt(0).toString(16));
+
+				line = document.createElement('tr');
+				td = document.createElement('td');
+				code_linear = document.createElement('code');
+				code_linear.innerText = char;
+				td.appendChild(code_linear);
+				line.appendChild(td);
+				td = document.createElement('td');
+				td.innerText = char.codePointAt(0).toString(16);
+				line.appendChild(td);
+				td = document.createElement('td');
+				td.innerText = char.codePointAt(0).toString(10);
+				line.appendChild(td);
+				section.appendChild(line);
+			}
+			wrap.appendChild(section);
+			document.body.appendChild(wrap);
+			return array;
+		}
+	</script>
+</body>
+</html>
